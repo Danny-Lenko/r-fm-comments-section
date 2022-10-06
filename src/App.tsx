@@ -1,5 +1,7 @@
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import { Box } from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
+// import { createTheme } from '@mui/material'
+// import { Box } from '@mui/material';
+import CommentCard from './CommentCard'
 
 declare module '@mui/material/styles' {
   interface Palette {
@@ -43,15 +45,25 @@ function App() {
         main: 'hsl(223, 19%, 93%)',
         light: 'hsl(228, 33%, 97%)',
         contrastText: '#000'
+      },
+      background: {
+        default: 'hsl(228, 33%, 97%)'
       }
     },
   });
 
   return (
+
     <ThemeProvider theme={theme}>
       <CssBaseline />
 
-      <h2>Hello App</h2>
+      <Container maxWidth='md' >
+
+        <h2>Hello App</h2>
+
+        <CommentCard />
+
+      </Container>
 
     </ThemeProvider>
   )
