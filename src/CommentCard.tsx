@@ -6,57 +6,54 @@ import Avatar from '@mui/material/Avatar';
 import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import { createSvgIcon } from '@mui/material/utils';
-import { Theme } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import { IconReply, IconPlus, IconMinus, iconButtonStylesReply, iconButtonStylesLike } from './commentCardIcons';
+import { cardStyles, cardActionStyles, cardHeaderStyles } from './commentCardStyles'
 
 
 export default function CommentCard() {
 
-   const IconReply = createSvgIcon(
-      <path width={'24px'} height='24px' d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" />,
-      'IconReply',
-   );
-
-   const iconButtonStyles = {
-      color: 'blueCustom.main',
-      transition: (theme: Theme) => theme.transitions.create('all', {
-         duration: theme.transitions.duration.standard,
-      }),
-      '&:hover': {
-         bgcolor: 'unset',
-         color: 'blueCustom.light'
-      }
-   }
-
    return (
-      <Card elevation={0} sx={{ mx: 10, pt: 1, px: 1 }}>
-         <CardHeader
-            avatar={
-               <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                  R
-               </Avatar>
-            }
-            action={
-               <IconButton sx={iconButtonStyles}>
-                  <IconReply sx={{ transform: 'translateY(25%)' }} />
-                  <Typography fontWeight={500}>
-                     Reply
-                  </Typography>
-               </IconButton>
-            }
-            title="Shrimp and Chorizo Paella"
-            subheader="September 14, 2016"
-         />
-         <CardContent>
-            <Typography variant="body2" color="text.secondary">
-               This impressive paella is a perfect party dish and a fun meal to cook
-               together with your guests. Add 1 cup of frozen peas along with the mussels,
-               if you like.
+      <Card elevation={0} sx={cardStyles}>
+         <CardActions disableSpacing sx={cardActionStyles}>
+            <IconButton size='small' sx={iconButtonStylesLike}>
+               <IconPlus sx={{ fontSize: 10 }} viewBox='0.5 1 10 10' />
+            </IconButton>
+            <Typography >
+               5
             </Typography>
-         </CardContent>
-         <CardActions disableSpacing>
-
+            <IconButton size='small' sx={iconButtonStylesLike}>
+               <IconMinus sx={{ fontSize: 10, fontWeight: 400 }} viewBox='0 -3.5 10 10' />
+            </IconButton>
          </CardActions>
+
+         <Box>
+            <CardHeader
+               sx={cardHeaderStyles}
+               avatar={
+                  <Avatar sx={{ bgcolor: red[500], width: 30, height: 30 }} aria-label="recipe">
+                     R
+                  </Avatar>
+               }
+               action={
+                  <IconButton sx={iconButtonStylesReply}>
+                     <IconReply sx={{ transform: 'translateY(25%)' }} />
+                     <Typography fontWeight={500}>
+                        Reply
+                     </Typography>
+                  </IconButton>
+               }
+               title="Shrimp"
+               subheader="September 14, 2016"
+            />
+            <CardContent>
+               <Typography variant="body2" color='greyCustom.dark'>
+                  This impressive paella is a perfect party dish and a fun meal to cook
+                  together with your guests. Add 1 cup of frozen peas along with the mussels,
+                  if you like.
+               </Typography>
+            </CardContent>
+         </Box>
       </Card>
    );
 }

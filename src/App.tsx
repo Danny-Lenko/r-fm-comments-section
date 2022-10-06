@@ -1,6 +1,4 @@
 import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
-// import { createTheme } from '@mui/material'
-// import { Box } from '@mui/material';
 import CommentCard from './CommentCard'
 
 declare module '@mui/material/styles' {
@@ -44,6 +42,7 @@ function App() {
       greyCustom: {
         main: 'hsl(223, 19%, 93%)',
         light: 'hsl(228, 33%, 97%)',
+        dark: 'hsl(211, 10%, 45%)',
         contrastText: '#000'
       },
       background: {
@@ -56,15 +55,11 @@ function App() {
 
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
-      <Container maxWidth='md' >
-
-        <h2>Hello App</h2>
+      <Container maxWidth='md' sx={{my: 3}}>
 
         <CommentCard />
 
       </Container>
-
     </ThemeProvider>
   )
 }
