@@ -12,23 +12,25 @@ import { cardStyles, cardActionStyles, cardHeaderStyles } from './commentCardSty
 
 export default function CommentCard() {
 
+   console.log(iconButtonStylesReply.assembleStyles())
+
    return (
       <Card elevation={0} sx={cardStyles} >
          {/* box with likes btns container & small screen reply btn */}
          <Box id='buttonsBox'>
             <CardActions disableSpacing sx={cardActionStyles}>
-               <IconButton size='small' sx={iconButtonStylesLike}>
+               <IconButton size='small' sx={iconButtonStylesLike.assembleStyles()}>
                   <IconPlus sx={{ fontSize: 10 }} viewBox='0.5 1 10 10' />
                </IconButton>
                <Typography >
                   5
                </Typography>
-               <IconButton size='small' sx={iconButtonStylesLike}>
+               <IconButton size='small' sx={iconButtonStylesLike.assembleStyles()}>
                   <IconMinus sx={{ fontSize: 10, fontWeight: 400 }} viewBox='0 -3.5 10 10' />
                </IconButton>
             </CardActions>
             {/* xs screen reply button */}
-            <IconButton sx={iconButtonStylesReplySmall}>
+            <IconButton sx={iconButtonStylesReplySmall.assembleStyles()}>
                <IconReply sx={{ transform: 'translateY(25%)' }} />
                <Typography fontWeight={500}>
                   Reply
@@ -46,7 +48,7 @@ export default function CommentCard() {
                }
                // sm screen reply button
                action={
-                  <IconButton sx={iconButtonStylesReply}>
+                  <IconButton sx={iconButtonStylesReply.assembleStyles()}>
                      <IconReply sx={{ transform: 'translateY(25%)' }} />
                      <Typography fontWeight={500}>
                         Reply

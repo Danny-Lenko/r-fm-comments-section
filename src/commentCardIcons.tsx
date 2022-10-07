@@ -1,31 +1,29 @@
 import { createSvgIcon } from '@mui/material/utils';
 import { Theme } from '@mui/material/styles';
 
-type TransitionFn = (theme: Theme) => any
-
 class IconButtonStyles {
-   color: string
-   '&:hover': Object
-   transition: TransitionFn
-   display: Object
    constructor(
-      color: string,
-      hover: Object,
-      display: Object = { xs: 'flex', sm: 'flex' },
-      transition: TransitionFn = (theme: Theme) => theme.transitions.create('all', {
-         duration: theme.transitions.duration.standard,
+      public color: string,
+      public hoverColor: string,
+      public displayXs: string = 'flex',
+      public displaySm: string = 'flex',
+   ) {}
+
+   assembleStyles = () => {
+      return ({
+         color: this.color,
+         '&:hover': { bgcolor: 'unset', color: this.hoverColor },
+         display: { xs: this.displayXs, sm: this.displaySm },
+         transition: (theme: Theme) => theme.transitions.create('all', {
+            duration: theme.transitions.duration.standard,
+         })
       })
-   ) {
-      this.color = color
-      this['&:hover'] = hover
-      this.transition = transition
-      this.display = display
    }
 }
 
-export const iconButtonStylesReply = new IconButtonStyles('blueCustom.main', { bgcolor: 'unset', color: 'blueCustom.light' })
-export const iconButtonStylesReplySmall = new IconButtonStyles('blueCustom.main', { bgcolor: 'unset', color: 'blueCustom.light' }, { xs: 'flex', sm: 'none' })
-export const iconButtonStylesLike = new IconButtonStyles('blueCustom.light', { bgcolor: 'unset', color: 'blueCustom.main' })
+export const iconButtonStylesReply = new IconButtonStyles('blueCustom.main', 'blueCustom.light')
+export const iconButtonStylesReplySmall = new IconButtonStyles('blueCustom.main', 'blueCustom.light', 'flex', 'none' )
+export const iconButtonStylesLike = new IconButtonStyles('blueCustom.light', 'blueCustom.main')
 
 export const IconReply = createSvgIcon(
    <path width={'24px'} height='24px' d="M.227 4.316 5.04.16a.657.657 0 0 1 1.085.497v2.189c4.392.05 7.875.93 7.875 5.093 0 1.68-1.082 3.344-2.279 4.214-.373.272-.905-.07-.767-.51 1.24-3.964-.588-5.017-4.829-5.078v2.404c0 .566-.664.86-1.085.496L.227 5.31a.657.657 0 0 1 0-.993Z" />,
