@@ -6,9 +6,17 @@ export const cardStyles = {
    flexDirection: { xs: 'column-reverse', sm: 'row' },
    alignItems: 'center',
    borderRadius: 2,
-   // '*': {
-   //    px: {xs: 0, sm: 'unset'}
-   // }
+   '& .MuiCardContent-root': {
+      py: { xs: 0 },
+      pb: 0,
+      px: {xs: 0.5, sm: 2}
+   },
+   '& .MuiBox-root#buttonsBox': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      width: {xs: '100%', sm: 'fit-content'},
+      mb: {xs: 2, sm: 0}
+   }
 }
 
 export const cardActionStyles = {
@@ -26,9 +34,8 @@ export const cardActionStyles = {
    }
 }
 
-// fontWeight={500} sx={{color: 'blueCustom.main', my: 1}}
-
 export const cardHeaderStyles = {
+   px: {xs: 0.5, sm: 2},
    '& .MuiCardHeader-content': {
       display: 'flex',
       gap: 1.5
