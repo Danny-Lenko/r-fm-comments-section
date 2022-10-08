@@ -9,10 +9,12 @@ import { red } from '@mui/material/colors';
 import Box from '@mui/material/Box';
 import { IconReply, IconPlus, IconMinus, iconButtonStylesReply, iconButtonStylesLike, iconButtonStylesReplySmall } from './commentCardIcons';
 import { cardStyles, cardActionStyles, cardHeaderStyles } from './commentCardStyles'
+import { Comment } from './interfaces'
 
-export default function CommentCard() {
 
-   console.log(iconButtonStylesReply.assembleStyles())
+export default function CommentCard(props:Comment) {
+   console.log(props)
+   const {id, content, score} = props
 
    return (
       <Card elevation={0} sx={cardStyles} >
@@ -23,7 +25,7 @@ export default function CommentCard() {
                   <IconPlus sx={{ fontSize: 10 }} viewBox='0.5 1 10 10' />
                </IconButton>
                <Typography >
-                  5
+                  {score}
                </Typography>
                <IconButton size='small' sx={iconButtonStylesLike.assembleStyles()}>
                   <IconMinus sx={{ fontSize: 10, fontWeight: 400 }} viewBox='0 -3.5 10 10' />
@@ -43,7 +45,7 @@ export default function CommentCard() {
                sx={cardHeaderStyles}
                avatar={
                   <Avatar sx={{ bgcolor: red[500], width: 30, height: 30 }} aria-label="recipe">
-                     R
+                     {id}
                   </Avatar>
                }
                // sm screen reply button
@@ -60,9 +62,7 @@ export default function CommentCard() {
             />
             <CardContent>
                <Typography variant="body2" color='greyCustom.dark'>
-                  This impressive paella is a perfect party dish and a fun meal to cook
-                  together with your guests. Add 1 cup of frozen peas along with the mussels,
-                  if you like.
+                  {content}
                </Typography>
             </CardContent>
          </Box>
