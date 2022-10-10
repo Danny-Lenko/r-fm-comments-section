@@ -13,8 +13,11 @@ import { Comment } from './interfaces'
 
 
 export default function CommentCard(props:Comment) {
-   console.log(props)
-   const {id, content, score} = props
+   const {id, content, score, createdAt, replies, user} = props
+
+   function getImgUrl(name:string) {
+      return new URL(`${name}`, import.meta.url).href
+   }
 
    return (
       <Card elevation={0} sx={cardStyles} >
@@ -44,9 +47,7 @@ export default function CommentCard(props:Comment) {
             <CardHeader
                sx={cardHeaderStyles}
                avatar={
-                  <Avatar sx={{ bgcolor: red[500], width: 30, height: 30 }} aria-label="recipe">
-                     {id}
-                  </Avatar>
+                  <Avatar sx={{ width: 30, height: 30 }} src={ getImgUrl(user.image.png) } />
                }
                // sm screen reply button
                action={
@@ -57,8 +58,8 @@ export default function CommentCard(props:Comment) {
                      </Typography>
                   </IconButton>
                }
-               title="Shrimp"
-               subheader="September 14"
+               title={user.username}
+               subheader={createdAt}
             />
             <CardContent>
                <Typography variant="body2" color='greyCustom.dark'>

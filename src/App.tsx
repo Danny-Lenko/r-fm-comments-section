@@ -1,5 +1,6 @@
 import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
 import CommentCard from './CommentCard'
+import CommentRepliesSection from './CommentRepliesSection';
 import { useSelector, useDispatch } from 'react-redux'
 import { increment } from './features/commentsSlice';
 import { Data } from './interfaces'
@@ -45,9 +46,8 @@ function App() {
   // const dispatch = useDispatch()
 
   console.log(state)
-  const obj = state.comments
-  const comments = obj.comments
-  console.log(comments)
+  const commentsState = state.comments
+  const comments = commentsState.comments
 
   return (
 
@@ -55,13 +55,14 @@ function App() {
       <CssBaseline />
       <Container maxWidth='md' sx={{my: 3}}>
 
-        {
+        {/* {
           comments.map(comment => <CommentCard key={comment.id} {...comment} />)
+        } */}
+
+        {
+          comments.map(comment => <CommentRepliesSection key={comment.id} {...comment} />)
         }
 
-        {/* {
-          comments.comments.map(comment => <div key={comment.id}><CommentCard props={comment} /></div>)
-        } */}
 
       </Container>
     </ThemeProvider>

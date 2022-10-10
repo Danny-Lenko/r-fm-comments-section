@@ -1,6 +1,7 @@
 export const cardStyles = {
    mx: { xs: 1, sm: 7, md: 10 },
    mb: 1,
+   mt: 2,
    pt: 1,
    px: 1,
    display: 'flex',

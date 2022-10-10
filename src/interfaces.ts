@@ -9,6 +9,9 @@ export interface Comment {
    id: number
    content: string
    score: number
+   createdAt: string
+   replies: Comment[]
+   user: {image: {png: string, webp: string}, username: string}
 }
 
 declare module '@mui/material/styles' {
