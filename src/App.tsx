@@ -54,16 +54,9 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth='md' sx={{my: 3}}>
-
-        {/* {
-          comments.map(comment => <CommentCard key={comment.id} {...comment} />)
-        } */}
-
         {
           comments.map(comment => <CommentRepliesSection key={comment.id} {...comment} />)
         }
-
-
       </Container>
     </ThemeProvider>
   )

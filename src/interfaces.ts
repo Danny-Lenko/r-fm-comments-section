@@ -4,6 +4,36 @@ export interface Data {
      currentUser: {}
    }
 }
+export interface RawData {
+  comments: Comment[]
+  currentUser: {}
+}
+
+export interface DataState {
+  currentUser: {
+    image: {
+        png: string;
+        webp: string;
+    };
+    username: string;
+    like?: boolean;
+    dislike?: boolean;
+};
+  comments: {
+      id: number;
+      content: string;
+      createdAt: string;
+      score: number;
+      user: {
+          image: {
+              png: string;
+              webp: string;
+          };
+          username: string;
+      };
+      replies: Comment[];
+  }[];
+}
 
 export interface Comment {
    id: number
@@ -12,6 +42,9 @@ export interface Comment {
    createdAt: string
    replies: Comment[]
    user: {image: {png: string, webp: string}, username: string}
+   replyingTo?: string
+   like?: boolean
+   dislike?: boolean
 }
 
 declare module '@mui/material/styles' {
