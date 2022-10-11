@@ -79,10 +79,13 @@ export const commentsSlice = createSlice({
         }
       })
     },
-
+    // add new comment
+    addComment: (state, action) => {
+      state.comments.push(action.payload)
+    }
   }
 })
 
-export const { increment, decrement } = commentsSlice.actions
+export const { increment, decrement, addComment } = commentsSlice.actions
 
 export default commentsSlice.reducer

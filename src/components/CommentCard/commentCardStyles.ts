@@ -1,6 +1,6 @@
 export const cardStyles = {
    mx: { xs: 1, sm: 7, md: 10 },
-   mb: 1,
+   mb: 2,
    mt: 2,
    pt: 1,
    px: 1,
@@ -25,8 +25,8 @@ export const cardActionStyles = {
    display: 'flex',
    flexDirection: { xs: 'row', sm: 'column' },
    bgcolor: 'greyCustom.light',
-   ml: 2,
-   mr: 1,
+   ml: {xs: 0, sm: 2},
+   mr: {xs: 0, sm: 1},
    borderRadius: 2,
    '& .MuiTypography-body1': {
       fontWeight: 500,

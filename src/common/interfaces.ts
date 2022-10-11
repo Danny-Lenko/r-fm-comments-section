@@ -11,7 +11,7 @@ export interface Comment {
    score: number
    createdAt: string
    replies: Comment[]
-   user: {image: {png: string, webp: string}, username: string}
+   user: {image: {png: string, webp?: string}, username: string}
    replyingTo?: string
    like?: boolean
    dislike?: boolean
