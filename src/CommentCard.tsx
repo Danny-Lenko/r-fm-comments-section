@@ -9,30 +9,26 @@ import Box from '@mui/material/Box';
 import { IconReply, IconPlus, IconMinus, iconButtonStylesReply, iconButtonStylesLike, iconButtonStylesReplySmall } from './commentCardIcons';
 import { cardStyles, cardActionStyles, cardHeaderStyles } from './commentCardStyles'
 import { Comment } from './interfaces'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { increment, decrement } from './features/commentsSlice';
-
+import { getImgUrl } from './utils';
 
 export default function CommentCard(props:Comment) {
    const dispatch = useDispatch()
-   const {id, content, score, createdAt, replies, user, replyingTo, like, dislike} = props
-
-   function getImgUrl(name:string) {
-      return new URL(`${name}`, import.meta.url).href
-   }
+   const {id, content, score, createdAt, user, replyingTo} = props
 
    return (
       <Card elevation={0} sx={cardStyles} >
          {/* box with likes btns container & small screen reply btn */}
          <Box id='buttonsBox'>
             <CardActions disableSpacing sx={cardActionStyles}>
-               <IconButton disabled={like} onClick={() => dispatch(increment(id))} size='small' sx={iconButtonStylesLike.assembleStyles()}>
+               <IconButton onClick={() => dispatch(increment(id))} size='small' sx={iconButtonStylesLike.assembleStyles()}>
                   <IconPlus sx={{ fontSize: 10 }} viewBox='0.5 1 10 10' />
                </IconButton>
-               <Typography >
+               <Typography>
                   {score}
                </Typography>
-               <IconButton disabled={dislike} onClick={() => dispatch(decrement(id))} size='small' sx={iconButtonStylesLike.assembleStyles()}>
+               <IconButton onClick={() => dispatch(decrement(id))} size='small' sx={iconButtonStylesLike.assembleStyles()}>
                   <IconMinus sx={{ fontSize: 10, fontWeight: 400 }} viewBox='0 -3.5 10 10' />
                </IconButton>
             </CardActions>

@@ -1,9 +1,8 @@
 import { createTheme, ThemeProvider, CssBaseline, Container } from '@mui/material';
-import CommentCard from './CommentCard'
 import CommentRepliesSection from './CommentRepliesSection';
-import { useSelector, useDispatch } from 'react-redux'
-import { increment } from './features/commentsSlice';
+import { useSelector} from 'react-redux'
 import { Data } from './interfaces'
+import TextFieldCard from './TextFieldCard';
 
 const theme = createTheme({
   typography: {
@@ -41,22 +40,19 @@ const theme = createTheme({
 });
 
 function App() {
-
   const state = useSelector( (state:Data) => state )
-  // const dispatch = useDispatch()
-
-  console.log(state)
   const commentsState = state.comments
-  const comments = commentsState.comments
+  const comments = commentsState.comments.slice().sort((a,b)=>b.score-a.score)
+  console.log(state)
 
   return (
-
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Container maxWidth='md' sx={{my: 3}}>
         {
           comments.map(comment => <CommentRepliesSection key={comment.id} {...comment} />)
         }
+        <TextFieldCard />
       </Container>
     </ThemeProvider>
   )

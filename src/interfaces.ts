@@ -1,38 +1,8 @@
 export interface Data {
    comments: {
      comments: Comment[]
-     currentUser: {}
+     currentUser: {username: string, image: {png: string}}
    }
-}
-export interface RawData {
-  comments: Comment[]
-  currentUser: {}
-}
-
-export interface DataState {
-  currentUser: {
-    image: {
-        png: string;
-        webp: string;
-    };
-    username: string;
-    like?: boolean;
-    dislike?: boolean;
-};
-  comments: {
-      id: number;
-      content: string;
-      createdAt: string;
-      score: number;
-      user: {
-          image: {
-              png: string;
-              webp: string;
-          };
-          username: string;
-      };
-      replies: Comment[];
-  }[];
 }
 
 export interface Comment {

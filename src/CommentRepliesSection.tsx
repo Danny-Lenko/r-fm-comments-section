@@ -3,11 +3,10 @@ import { Comment } from "./interfaces";
 import Box from "@mui/material/Box";
 
 const CommentRepliesSection = (props:Comment) => {
-   console.log(props)
-
    const repliesBoxStyles = {
       pl: {xs: 3, md: 5, lg: 10},
       position: 'relative',
+      mb: 2,
       '&:before': {
          content: '""',
          width: '2px',
