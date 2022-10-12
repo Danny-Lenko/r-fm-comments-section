@@ -2,6 +2,11 @@ export interface Data {
    comments: {
      comments: Comment[]
      currentUser: {username: string, image: {png: string}}
+     replyId: number
+     replyName: string
+     delId: number
+     editId: number
+     isReply: boolean
    }
 }
 
@@ -10,7 +15,7 @@ export interface Comment {
    content: string
    score: number
    createdAt: string
-   replies: Comment[]
+   replies?: Comment[]
    user: {image: {png: string, webp?: string}, username: string}
    replyingTo?: string
    like?: boolean

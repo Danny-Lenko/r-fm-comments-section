@@ -42,6 +42,7 @@ const theme = createTheme({
 function App() {
   const data = useSelector((state: Data) => state.comments)
   const comments = data.comments.slice().sort((a, b) => b.score - a.score)
+  const isReply = data.isReply
   console.log(data)
 
   return (
@@ -51,7 +52,7 @@ function App() {
         {
           comments.map(comment => <CommentRepliesSection key={comment.id} {...comment} />)
         }
-        <TextFieldCard />
+        { !isReply && <TextFieldCard /> }
       </Container>
     </ThemeProvider>
   )

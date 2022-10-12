@@ -3,12 +3,20 @@ import data from '../data/data.json'
 
 export const commentsSlice = createSlice({
   name: 'data',
-  // initialize state adding like and dislike properties to each comment and reply
-  initialState: {...data, comments: data.comments.map(comment => (
-    {...comment, like:false, dislike:false, replies: comment.replies.map(reply => (
-      {...reply, like:false, dislike:false}
-    ))}
-  ))},
+  // initialize state adding like and dislike properties to each comment and reply & ids for buttons interaction
+  initialState: {
+    ...data, 
+    replyId:null,
+    replyName:null,
+    delId:null, 
+    editId:null,
+    isReply:false,
+    comments: data.comments.map(comment => (
+      {...comment, like:false, dislike:false, replies: comment.replies.map(reply => (
+        {...reply, like:false, dislike:false}
+      ))}
+    ))
+  },
   // ------- reducers
   reducers: {
     // increment on plus btn click
@@ -85,13 +93,28 @@ export const commentsSlice = createSlice({
         state.comments.push(action.payload)
       }
     },
+    // open reply
+    openReply: (state, action) => {
+      if (state.replyId === action.payload.id && state.isReply) {
+        state.isReply = false
+        return
+      }
+      state.replyId = action.payload.id
+      state.replyName = action.payload.user.username
+      state.isReply = true
+    },
     // add new reply
     addReply: (state, action) => {
-      
+      console.log(action.payload)
+      state.comments.map(comment => comment.id === action.payload.commentId 
+        ? comment.replies.push(action.payload.info)
+        : comment
+      )
+      state.isReply = false
     }
+
   }
 })
 
-export const { increment, decrement, addComment } = commentsSlice.actions
-
+export const { increment, decrement, addComment, openReply, addReply } = commentsSlice.actions
 export default commentsSlice.reducer

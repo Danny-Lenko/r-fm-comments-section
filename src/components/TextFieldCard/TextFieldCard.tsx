@@ -7,13 +7,14 @@ import { useSelector } from "react-redux";
 import { Data } from "../../common/interfaces";
 import { textCardStyles, avatarStyles, textFieldStyles } from "./TextFieldCardStyles";
 import { useDispatch } from "react-redux";
-import { addComment } from '../../features/commentsSlice'
-import { defineNextId } from "../../common/utils";
+import { addComment, addReply } from '../../features/commentsSlice'
+import { defineNextId, defineCommentId } from "../../common/utils";
 import { useState } from 'react'
 import { Comment } from "../../common/interfaces";
 
 const TextFieldCard = () => {
    const data = useSelector((state: Data) => state.comments)
+   const comments = data.comments
    const userAvatar = data.currentUser.image.png
    const dispatch = useDispatch()
    const [text, setText] = useState('')
@@ -26,6 +27,20 @@ const TextFieldCard = () => {
       user: data.currentUser
    }
 
+   const newReplyObj: Comment = {
+      id: defineNextId(data.comments),
+      content: text,
+      score: 0,
+      createdAt: 'just now',
+      user: data.currentUser,
+      replyingTo: data.replyName
+   }
+
+   const isReply = data.isReply
+   const replyId = data.replyId
+   const commentId = replyId ? defineCommentId(comments, replyId) : null
+   console.log(data.replyName)
+
    return (
       <Card elevation={0} sx={textCardStyles} >
          <Avatar sx={avatarStyles} src={ getImgUrl(userAvatar) } />
@@ -36,13 +51,21 @@ const TextFieldCard = () => {
             size="small"
             sx={textFieldStyles}
             id="outlined-basic"
-            label="Add a comment..."
+            label={data.replyName ? `@${data.replyName}` : "Add a comment..."}
             variant="outlined"
             value={text}
             onChange={ (e) => {setText(e.target.value)} }
          />
          <Button
-            onClick={ () => dispatch(addComment(newCommentObj)) }
+            disabled={text ? false : true}
+            onClick={ () => {
+               if (isReply) {
+                  dispatch(addReply( {info: newReplyObj, commentId: commentId} ))
+               } else {
+                  dispatch(addComment(newCommentObj))
+               }
+               setText('')
+            } }
             variant="contained" 
             sx={{ ml: 'auto', bgcolor: 'blueCustom.main' }}
          >
