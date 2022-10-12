@@ -81,7 +81,13 @@ export const commentsSlice = createSlice({
     },
     // add new comment
     addComment: (state, action) => {
-      state.comments.push(action.payload)
+      if (action.payload.content) {
+        state.comments.push(action.payload)
+      }
+    },
+    // add new reply
+    addReply: (state, action) => {
+      
     }
   }
 })
