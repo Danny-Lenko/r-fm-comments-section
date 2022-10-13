@@ -11,6 +11,7 @@ export const commentsSlice = createSlice({
     delId:null, 
     editId:null,
     isReply:false,
+    isEdit:false,
     comments: data.comments.map(comment => (
       {...comment, like:false, dislike:false, replies: comment.replies.map(reply => (
         {...reply, like:false, dislike:false}
@@ -102,19 +103,41 @@ export const commentsSlice = createSlice({
       state.replyId = action.payload.id
       state.replyName = action.payload.user.username
       state.isReply = true
+      state.isEdit = false
     },
     // add new reply
     addReply: (state, action) => {
-      console.log(action.payload)
       state.comments.map(comment => comment.id === action.payload.commentId 
         ? comment.replies.push(action.payload.info)
         : comment
       )
       state.isReply = false
+    },
+    // delete comment or reply
+    deleteComment: (state, action) => {
+      state.comments.forEach(comment => {
+        if (comment.id !== action.payload) {
+          comment.replies = comment.replies.filter(reply => reply.id !== action.payload)
+        }
+      })
+      state.comments = state.comments.filter(comment => comment.id !== action.payload)
+      state.isEdit = false
+      state.isReply = false
+    },
+    // edit comment or reply
+    editComment: (state, action) => {
+      console.log(action.payload)
+      state.editId = action.payload
+      state.isEdit = !state.isEdit
+      state.isReply = false
+    },
+    // update comment or reply
+    updateComment: (state, action) => {
+      
     }
 
   }
 })
 
-export const { increment, decrement, addComment, openReply, addReply } = commentsSlice.actions
+export const { increment, decrement, addComment, openReply, addReply, deleteComment, editComment } = commentsSlice.actions
 export default commentsSlice.reducer

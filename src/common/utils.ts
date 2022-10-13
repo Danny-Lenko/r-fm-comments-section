@@ -12,6 +12,7 @@ export function defineNextId(arr: Comment[]) {
          ids.push(reply.id)
       })
    })
+   ids.sort((a,b)=>a-b)
    return ids[ids.length - 1] + 1
 }
 
@@ -29,4 +30,20 @@ export function defineCommentId(arr: Comment[], replyId: number) {
       }
    })
    return commentId
+}
+
+export function findCurrentComment(arr: Comment[], editId: number) {
+   let currentComment: null | Comment = null
+   arr.forEach(comment => {
+      if (comment.id === editId) {
+         currentComment = comment
+      } else {
+         comment.replies!.forEach(reply => {
+            if (reply.id === editId) {
+               currentComment = reply
+            }
+         })
+      }
+   })
+   return currentComment
 }

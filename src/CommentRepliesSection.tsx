@@ -23,8 +23,8 @@ const CommentRepliesSection = (props: Comment) => {
          <CommentCard {...props} />
 
          {
-            props.replies[0] && <Box sx={repliesBoxStyles}>
-               {props.replies.map(reply => <CommentCard key={reply.id} {...reply} />)}
+            props.replies![0] && <Box sx={repliesBoxStyles}>
+               {props.replies!.map(reply => <CommentCard key={reply.id} {...reply} />)}
             </Box>
          }
 

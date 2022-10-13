@@ -7,6 +7,7 @@ export interface Data {
      delId: number
      editId: number
      isReply: boolean
+     isEdit: boolean
    }
 }
 

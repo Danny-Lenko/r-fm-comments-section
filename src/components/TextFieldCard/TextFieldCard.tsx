@@ -18,28 +18,26 @@ const TextFieldCard = () => {
    const userAvatar = data.currentUser.image.png
    const dispatch = useDispatch()
    const [text, setText] = useState('')
+   const nextId = defineNextId(comments)
    const newCommentObj: Comment = {
-      id: defineNextId(data.comments),
+      id: nextId,
       content: text,
       score: 0,
       createdAt: 'just now',
       replies: [],
       user: data.currentUser
    }
-
    const newReplyObj: Comment = {
-      id: defineNextId(data.comments),
+      id: nextId,
       content: text,
       score: 0,
       createdAt: 'just now',
       user: data.currentUser,
       replyingTo: data.replyName
    }
-
    const isReply = data.isReply
    const replyId = data.replyId
    const commentId = replyId ? defineCommentId(comments, replyId) : null
-   console.log(data.replyName)
 
    return (
       <Card elevation={0} sx={textCardStyles} >
@@ -51,11 +49,11 @@ const TextFieldCard = () => {
             size="small"
             sx={textFieldStyles}
             id="outlined-basic"
-            label={data.replyName ? `@${data.replyName}` : "Add a comment..."}
+            label={data.replyName && isReply ? `@${data.replyName}` : "Add a comment..."}
             variant="outlined"
             value={text}
             onChange={ (e) => {setText(e.target.value)} }
-         />
+         /> 
          <Button
             disabled={text ? false : true}
             onClick={ () => {
@@ -69,7 +67,7 @@ const TextFieldCard = () => {
             variant="contained" 
             sx={{ ml: 'auto', bgcolor: 'blueCustom.main' }}
          >
-            Send
+            { isReply ? 'Reply': 'Send' }
          </Button>
       </Card>
    );
