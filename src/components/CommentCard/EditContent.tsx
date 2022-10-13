@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { Data } from "../../common/interfaces";
 import { textCardStyles, avatarStyles, textFieldStyles } from "../TextFieldCard/TextFieldCardStyles";
 import { useDispatch } from "react-redux";
-import { addComment, addReply } from '../../features/commentsSlice'
+import { updateComment } from '../../features/commentsSlice'
 import { defineNextId, defineCommentId } from "../../common/utils";
 import { useState } from 'react'
 import { Comment } from "../../common/interfaces";
@@ -45,6 +45,7 @@ const EditContent = () => {
                //    }
                //    setText('')
                // }}
+               onClick={() => dispatch(updateComment({id:currentComment!.id, text:text}))}
                variant="contained"
                sx={{ mt: 2, bgcolor: 'blueCustom.main' }}
             >

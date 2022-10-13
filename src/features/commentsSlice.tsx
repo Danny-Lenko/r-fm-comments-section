@@ -133,11 +133,27 @@ export const commentsSlice = createSlice({
     },
     // update comment or reply
     updateComment: (state, action) => {
-      
+      console.log(action.payload)
+      state.comments.forEach(comment => {
+        if (comment.id !== action.payload.id) {
+          comment.replies = comment.replies.map(reply => reply.id === action.payload.id ? {...reply, content: action.payload.text} : reply)
+        }
+      })
+      state.comments = state.comments.map(comment => comment.id === action.payload.id ? {...comment, content: action.payload.text} : comment)
+      state.isEdit = false
     }
 
   }
 })
 
-export const { increment, decrement, addComment, openReply, addReply, deleteComment, editComment } = commentsSlice.actions
+export const { 
+  increment, 
+  decrement, 
+  addComment, 
+  openReply, 
+  addReply, 
+  deleteComment, 
+  editComment,
+  updateComment
+} = commentsSlice.actions
 export default commentsSlice.reducer
