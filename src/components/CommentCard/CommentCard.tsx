@@ -48,9 +48,8 @@ export default function CommentCard(props: Comment) {
                   avatar={
                      <Avatar 
                         sx={{ width: 30, height: 30 }} 
-                        // src={`../.${user.image.png}`}
+                        src={user.image.png}
                         // src={getImgUrl(user.image.png)}
-                        src='../../../src/images/avatars/image-amyrobson.png'
                      />
                   }
                   // sm screen reply button
