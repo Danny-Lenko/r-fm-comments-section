@@ -12,6 +12,7 @@ export const commentsSlice = createSlice({
     editId:null,
     isReply:false,
     isEdit:false,
+    date:null,
     comments: data.comments.map(comment => (
       {...comment, like:false, dislike:false, replies: comment.replies.map(reply => (
         {...reply, like:false, dislike:false}

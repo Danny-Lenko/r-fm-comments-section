@@ -12,7 +12,8 @@ import DeleteEditBtns from './DeleteEditBtns';
 import PlusMinusBtns from './PlusMinusBtns';
 import ReplyBtn from './ReplyBtn';
 import TextFieldCard from '../TextFieldCard/TextFieldCard';
-import CommentContent from './CommentContent';
+import CommentContent from './CommentTextContent';
+import { TimeAgo } from './TimeAgo';
 
 export default function CommentCard(props: Comment) {
    const data = useSelector((state: Data) => state.comments)
@@ -20,7 +21,7 @@ export default function CommentCard(props: Comment) {
    const replyId = data.replyId
    const isReply = data.isReply
    const isEdit = data.isEdit
-   const { createdAt, user, id } = props
+   const { createdAt, user, id, date } = props
 
    return (
       <>
@@ -59,7 +60,7 @@ export default function CommentCard(props: Comment) {
                         : <ReplyBtn cardInfo={props} replyBtnStyles={iconButtonStylesReply.assembleStyles()} />
                   }
                   title={user.username}
-                  subheader={createdAt}
+                  subheader={date ? <TimeAgo timestamp={date} /> : createdAt}
                />
                <CommentContent {...props} />
             </Box>

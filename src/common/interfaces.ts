@@ -21,6 +21,7 @@ export interface Comment {
    replyingTo?: string
    like?: boolean
    dislike?: boolean
+   date?: string
 }
 
 declare module '@mui/material/styles' {

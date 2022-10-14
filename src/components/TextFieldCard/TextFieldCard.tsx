@@ -25,7 +25,8 @@ const TextFieldCard = () => {
       score: 0,
       createdAt: 'just now',
       replies: [],
-      user: data.currentUser
+      user: data.currentUser,
+      date: new Date().toISOString()
    }
    const newReplyObj: Comment = {
       id: nextId,
@@ -33,7 +34,8 @@ const TextFieldCard = () => {
       score: 0,
       createdAt: 'just now',
       user: data.currentUser,
-      replyingTo: data.replyName
+      replyingTo: data.replyName,
+      date: new Date().toISOString()
    }
    const isReply = data.isReply
    const replyId = data.replyId
