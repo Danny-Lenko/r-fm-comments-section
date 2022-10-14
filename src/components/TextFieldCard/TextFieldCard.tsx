@@ -72,7 +72,7 @@ const TextFieldCard = () => {
                setText('')
             } }
             variant="contained" 
-            sx={{ ml: 'auto', bgcolor: 'blueCustom.main' }}
+            sx={{ ml: 'auto', bgcolor: 'blueCustom.main', '&:hover': {bgcolor: 'blueCustom.light'} }}
          >
             { isReply ? 'Reply': 'Send' }
          </Button>

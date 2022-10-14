@@ -20,6 +20,7 @@ const EditContent = () => {
    return (
       <>
          <TextField
+            minRows={3}
             multiline
             fullWidth
             size="small"
@@ -37,7 +38,7 @@ const EditContent = () => {
                disabled={text ? false : true}
                onClick={ () => dispatch(updateComment({id:currentComment!.id, text:text})) }
                variant="contained"
-               sx={{ mt: 2, bgcolor: 'blueCustom.main' }}
+               sx={{ mt: 2, bgcolor: 'blueCustom.main', '&:hover': {bgcolor: 'blueCustom.light'} }}
             >
                Update
             </Button>
