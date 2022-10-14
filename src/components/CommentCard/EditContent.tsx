@@ -9,6 +9,7 @@ import { useState } from 'react'
 import { Comment } from "../../common/interfaces";
 import { findCurrentComment } from "../../common/utils";
 import Box from "@mui/material/Box";
+import { Theme } from '@mui/material/styles';
 
 const EditContent = () => {
    const data = useSelector((state: Data) => state.comments)
@@ -41,7 +42,9 @@ const EditContent = () => {
                sx={{ 
                   mt: 2, 
                   bgcolor: 'blueCustom.main',
-                  transition: 'all 1s ease-out',
+                  transition: (theme: Theme) => theme.transitions.create('all', {
+                     duration: theme.transitions.duration.standard,
+                   }),
                   '&:hover': {
                      bgcolor: 'blueCustom.light'
                   } 
