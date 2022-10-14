@@ -43,7 +43,11 @@ const TextFieldCard = () => {
 
    return (
       <Card elevation={0} sx={textCardStyles} >
-         <Avatar sx={avatarStyles} src={ getImgUrl(userAvatar) } />
+         <Avatar 
+            sx={avatarStyles} 
+            src={userAvatar}
+            // src={ getImgUrl(userAvatar) } 
+         />
          <TextField
             autoFocus={isReply ? true : false}
             multiline
