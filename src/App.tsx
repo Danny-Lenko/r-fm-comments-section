@@ -44,7 +44,8 @@ function App() {
   const comments = data.comments.slice().sort((a, b) => b.score - a.score)
   const isReply = data.isReply
   const isEdit = data.isEdit
-  console.log(data)
+
+  localStorage.setItem('data', JSON.stringify(data))
 
   return (
     <ThemeProvider theme={theme}>

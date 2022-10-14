@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit'
 import data from '../data/data.json'
 
+const restoredData = JSON.parse(localStorage.getItem("data")!);
+const initialData = restoredData ? {...restoredData} : {...data}
+console.log(initialData)
+
 export const commentsSlice = createSlice({
   name: 'data',
   // initialize state adding like and dislike properties to each comment and reply & ids for buttons interaction
   initialState: {
-    ...data, 
+    ...initialData,
     replyId:null,
     replyName:null,
     delId:null, 

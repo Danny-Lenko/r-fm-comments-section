@@ -5,7 +5,7 @@ import { Data } from "../../common/interfaces";
 import { textFieldStyles } from "../TextFieldCard/TextFieldCardStyles";
 import { useDispatch } from "react-redux";
 import { updateComment } from '../../features/commentsSlice'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { Comment } from "../../common/interfaces";
 import { findCurrentComment } from "../../common/utils";
 import Box from "@mui/material/Box";
@@ -21,7 +21,6 @@ const EditContent = () => {
       <>
          <TextField
             multiline
-            rows={3}
             fullWidth
             size="small"
             sx={textFieldStyles}
@@ -30,11 +29,13 @@ const EditContent = () => {
             variant="outlined"
             value={text}
             onChange={(e) => { setText(e.target.value) }}
+            autoFocus
+            onFocus={(e)=>e.currentTarget.setSelectionRange(e.currentTarget.value.length, e.currentTarget.value.length)}
          />
          <Box sx={{width: '100%', position: 'relative', textAlign: 'end'}}>
             <Button
                disabled={text ? false : true}
-               onClick={() => dispatch(updateComment({id:currentComment!.id, text:text}))}
+               onClick={ () => dispatch(updateComment({id:currentComment!.id, text:text})) }
                variant="contained"
                sx={{ mt: 2, bgcolor: 'blueCustom.main' }}
             >
