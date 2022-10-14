@@ -5,7 +5,7 @@ import { Data } from "../../common/interfaces";
 import { textFieldStyles } from "../TextFieldCard/TextFieldCardStyles";
 import { useDispatch } from "react-redux";
 import { updateComment } from '../../features/commentsSlice'
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { Comment } from "../../common/interfaces";
 import { findCurrentComment } from "../../common/utils";
 import Box from "@mui/material/Box";

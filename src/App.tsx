@@ -45,8 +45,6 @@ function App() {
   const isReply = data.isReply
   const isEdit = data.isEdit
 
-  localStorage.setItem('data', JSON.stringify(data))
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

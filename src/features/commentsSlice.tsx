@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit'
 import data from '../data/data.json'
+import { Comment } from '../common/interfaces'
 
-const restoredData = JSON.parse(localStorage.getItem("data")!);
-const initialData = restoredData ? {...restoredData} : {...data}
-console.log(initialData)
+const restoredComments: Comment[] = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')!) : data.comments
 
 export const commentsSlice = createSlice({
   name: 'data',
   // initialize state adding like and dislike properties to each comment and reply & ids for buttons interaction
   initialState: {
-    ...initialData,
+    ...data,
     replyId:null,
     replyName:null,
     delId:null, 
@@ -17,8 +16,8 @@ export const commentsSlice = createSlice({
     isReply:false,
     isEdit:false,
     date:null,
-    comments: data.comments.map(comment => (
-      {...comment, like:false, dislike:false, replies: comment.replies.map(reply => (
+    comments: restoredComments.map(comment => (
+      {...comment, like:false, dislike:false, replies: comment.replies!.map(reply => (
         {...reply, like:false, dislike:false}
       ))}
     ))
@@ -58,6 +57,7 @@ export const commentsSlice = createSlice({
           })
         }
       })
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // decrement on minus btn click
     decrement: (state, action) => {
@@ -92,12 +92,14 @@ export const commentsSlice = createSlice({
           })
         }
       })
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // add new comment
     addComment: (state, action) => {
       if (action.payload.content) {
         state.comments.push(action.payload)
       }
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // open reply
     openReply: (state, action) => {
@@ -117,6 +119,7 @@ export const commentsSlice = createSlice({
         : comment
       )
       state.isReply = false
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // delete comment or reply
     deleteComment: (state, action) => {
@@ -128,6 +131,7 @@ export const commentsSlice = createSlice({
       state.comments = state.comments.filter(comment => comment.id !== action.payload)
       state.isEdit = false
       state.isReply = false
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // edit comment or reply
     editComment: (state, action) => {
@@ -135,6 +139,7 @@ export const commentsSlice = createSlice({
       state.editId = action.payload
       state.isEdit = !state.isEdit
       state.isReply = false
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     },
     // update comment or reply
     updateComment: (state, action) => {
@@ -146,8 +151,8 @@ export const commentsSlice = createSlice({
       })
       state.comments = state.comments.map(comment => comment.id === action.payload.id ? {...comment, content: action.payload.text} : comment)
       state.isEdit = false
+      localStorage.setItem('comments', JSON.stringify(state.comments))
     }
-
   }
 })
 
