@@ -22,7 +22,6 @@ export default function CommentCard(props: Comment) {
    const isReply = data.isReply
    const isEdit = data.isEdit
    const { createdAt, user, id, date } = props
-   console.log(user)
 
    return (
       <>
@@ -49,8 +48,9 @@ export default function CommentCard(props: Comment) {
                   avatar={
                      <Avatar 
                         sx={{ width: 30, height: 30 }} 
-                        src={`../.${user.image.png}`} 
-                        // src={getImgUrl(user.image.png)} 
+                        // src={`../.${user.image.png}`}
+                        // src={getImgUrl(user.image.png)}
+                        src='../../images/avatars/image-amyrobson.png'
                      />
                   }
                   // sm screen reply button
