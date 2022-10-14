@@ -46,7 +46,11 @@ export default function CommentCard(props: Comment) {
                <CardHeader
                   sx={cardHeaderStyles}
                   avatar={
-                     <Avatar sx={{ width: 30, height: 30 }} src={getImgUrl(user.image.png)} />
+                     <Avatar 
+                        sx={{ width: 30, height: 30 }} 
+                        src={`../${user.image.png}`} 
+                        // src={getImgUrl(user.image.png)} 
+                     />
                   }
                   // sm screen reply button
                   action={
