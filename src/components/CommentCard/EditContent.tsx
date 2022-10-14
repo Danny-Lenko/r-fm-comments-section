@@ -38,7 +38,14 @@ const EditContent = () => {
                disabled={text ? false : true}
                onClick={ () => dispatch(updateComment({id:currentComment!.id, text:text})) }
                variant="contained"
-               sx={{ mt: 2, bgcolor: 'blueCustom.main', '&:hover': {bgcolor: 'blueCustom.light'} }}
+               sx={{ 
+                  mt: 2, 
+                  bgcolor: 'blueCustom.main',
+                  transition: 'all 1s ease-out',
+                  '&:hover': {
+                     bgcolor: 'blueCustom.light'
+                  } 
+               }}
             >
                Update
             </Button>
