@@ -44,7 +44,7 @@ const EditContent = () => {
                   bgcolor: 'blueCustom.main',
                   transition: (theme: Theme) => theme.transitions.create('all', {
                      duration: theme.transitions.duration.standard,
-                   }),
+                  }),
                   '&:hover': {
                      bgcolor: 'blueCustom.light'
                   } 

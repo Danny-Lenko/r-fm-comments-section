@@ -135,7 +135,6 @@ export const commentsSlice = createSlice({
     },
     // edit comment or reply
     editComment: (state, action) => {
-      console.log(action.payload)
       state.editId = action.payload
       state.isEdit = !state.isEdit
       state.isReply = false
