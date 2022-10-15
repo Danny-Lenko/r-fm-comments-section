@@ -1,4 +1,4 @@
-# Interactive comments section solution
+# Interactive comments section
 
 ## Table of contents
 
@@ -11,7 +11,6 @@
   - [What I learned](#what-i-learned)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
 ## Overview
 
@@ -26,14 +25,22 @@ Users are able to:
 - Use `localStorage` to save the current state in the browser that persists when the browser is refreshed.
 - Use timestamps and dynamically track the time since the comment or reply was posted.
 
+App's intended behaviour:
+
+- First-level comments are ordered by their score, whereas nested replies are ordered by time added.
+- Replying to a comment adds the new reply to the bottom of the nested replies within that comment.
+- A confirmation modal pops up before a comment or reply is deleted.
+- Adding a new comment or reply uses the `currentUser` object from within the `data.json` file.
+- You can only edit or delete your own comments and replies.
+
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 ### Links
 
-- Github repo URL: [Add solution URL here](https://github.com/Danny-Lenko/r-fm-comments-section)
-- Live Site URL: [Add live site URL here](https://r-fm-comments-section.vercel.app/)
+- [Github repo URL](https://github.com/Danny-Lenko/r-fm-comments-section)
+- [Live site URL](https://r-fm-comments-section.vercel.app/)
 
 ## My process
 
@@ -47,10 +54,10 @@ Users are able to:
 
 ### What I learned
 
-1) set the cursor after the text on focus
+1) set the cursor after the text on focus:
   [StackOverflow](https://stackoverflow.com/a/64980622/16906724)
 
-2) render images dynamically in the dev mode in vite placed in the src folder
+2) render images dynamically in the dev mode in vite placed in the src folder:
   [StackOverflow](https://stackoverflow.com/a/74010629/16906724)
 
 ### Useful resources
