@@ -3,6 +3,7 @@ import CommentRepliesSection from './CommentRepliesSection';
 import { useSelector } from 'react-redux'
 import { Data } from './common/interfaces'
 import TextFieldCard from './components/TextFieldCard/TextFieldCard';
+import DeleteModal from './features/modals/DeleteModal';
 
 const theme = createTheme({
   typography: {
@@ -53,6 +54,7 @@ function App() {
           comments.map(comment => <CommentRepliesSection key={comment.id} {...comment} />)
         }
         { !isReply && !isEdit && <TextFieldCard /> }
+        <DeleteModal />
       </Container>
     </ThemeProvider>
   )

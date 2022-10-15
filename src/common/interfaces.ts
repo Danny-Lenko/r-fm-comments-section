@@ -11,6 +11,12 @@ export interface Data {
    }
 }
 
+export interface DelModal {
+  deleteModal: {
+    open: boolean
+  }
+}
+
 export interface Comment {
    id: number
    content: string

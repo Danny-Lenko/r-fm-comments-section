@@ -5,7 +5,7 @@ import { Comment } from '../common/interfaces'
 const restoredComments: Comment[] = localStorage.getItem('comments') ? JSON.parse(localStorage.getItem('comments')!) : data.comments
 
 export const commentsSlice = createSlice({
-  name: 'data',
+  name: 'comments',
   // initialize state adding like and dislike properties to each comment and reply & ids for buttons interaction
   initialState: {
     ...data,
@@ -133,6 +133,9 @@ export const commentsSlice = createSlice({
       state.isReply = false
       localStorage.setItem('comments', JSON.stringify(state.comments))
     },
+    setDeleteId: (state, action) => {
+      state.delId = action.payload
+    },
     // edit comment or reply
     editComment: (state, action) => {
       state.editId = action.payload
@@ -161,7 +164,8 @@ export const {
   addComment, 
   openReply, 
   addReply, 
-  deleteComment, 
+  deleteComment,
+  setDeleteId,
   editComment,
   updateComment
 } = commentsSlice.actions
