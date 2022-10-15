@@ -35,7 +35,7 @@ App's intended behaviour:
 
 ### Screenshot
 
-![](./screenshot.png)
+![](./public/screenshot.png)
 
 ### Links
 
